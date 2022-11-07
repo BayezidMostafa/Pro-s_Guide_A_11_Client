@@ -7,8 +7,13 @@ import {
     IconButton,
 } from "@material-tailwind/react";
 import { Link } from "react-router-dom";
+import logo from '../../../assets/logo/logo.png'
+
+
 
 const NavBar = () => {
+
+
     const [openNav, setOpenNav] = useState(false);
 
     useEffect(() => {
@@ -26,7 +31,7 @@ const NavBar = () => {
                 color="blue-gray"
                 className="p-1 font-normal"
             >
-                <Link to="" className="flex items-center">
+                <Link to="" className="flex font-semibold items-center">
                     Pages
                 </Link>
             </Typography>
@@ -36,7 +41,7 @@ const NavBar = () => {
                 color="blue-gray"
                 className="p-1 font-normal"
             >
-                <Link to="" className="flex items-center">
+                <Link to="" className="flex font-semibold items-center">
                     Account
                 </Link>
             </Typography>
@@ -46,7 +51,7 @@ const NavBar = () => {
                 color="blue-gray"
                 className="p-1 font-normal"
             >
-                <Link to="" className="flex items-center">
+                <Link to="" className="flex font-semibold items-center">
                     Blocks
                 </Link>
             </Typography>
@@ -56,7 +61,7 @@ const NavBar = () => {
                 color="blue-gray"
                 className="p-1 font-normal"
             >
-                <Link to="" className="flex items-center">
+                <Link to="" className="flex font-semibold items-center">
                     Docs
                 </Link>
             </Typography>
@@ -64,19 +69,18 @@ const NavBar = () => {
     );
 
     return (
-        <Navbar className="mx-auto max-w-screen-xl py-2 px-4 lg:px-8 lg:py-4">
+        <Navbar className="mx-auto py-2 px-4 lg:px-8 lg:py-4">
             <div className="container mx-auto flex items-center justify-between text-blue-gray-900">
                 <Typography
-                    as="a"
-                    to=""
                     variant="small"
-                    className="mr-4 cursor-pointer py-1.5 font-normal"
+                    className="mr-4 cursor-pointer py-1.5 font-normal flex items-center"
                 >
-                    <span>Material Tailwind</span>
+                <img className="mr-5 w-10 h-10" src={logo} alt="" />
+                    <Link className="text-2xl font-semibold uppercase" to='/'>Pro's Guide</Link>
                 </Typography>
                 <div className="hidden lg:block">{navList}</div>
-                <Button variant="gradient" size="sm" className="hidden lg:inline-block">
-                    <span>Buy Now</span>
+                <Button variant="text" size="lg" className="hidden lg:inline-block">
+                    <Link>Log in</Link>
                 </Button>
                 <IconButton
                     variant="text"
@@ -118,9 +122,10 @@ const NavBar = () => {
             </div>
             <MobileNav open={openNav}>
                 {navList}
-                <Button variant="gradient" size="sm" fullWidth className="mb-2">
-                    <span>Buy Now</span>
-                </Button>
+                <Link>
+                    <Button variant="text" size="md" fullWidth className="mb-2">
+                        Login
+                    </Button></Link>
             </MobileNav>
         </Navbar>
     );
