@@ -1,10 +1,10 @@
-import Example from "./Pages/Shared/NavBar/NavBar";
-import NavBar from "./Pages/Shared/NavBar/NavBar";
+import { RouterProvider } from "react-router-dom";
+import { routes } from "./Router/Routes/Routes";
 
 const App = () => {
   return (
     <div >
-      <Example/>
+      <RouterProvider router={routes}/>
     </div>
   );
 }
