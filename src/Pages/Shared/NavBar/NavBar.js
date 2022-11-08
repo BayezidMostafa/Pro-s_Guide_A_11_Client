@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import {
     Navbar,
     MobileNav,
@@ -8,10 +8,13 @@ import {
 } from "@material-tailwind/react";
 import { Link } from "react-router-dom";
 import logo from '../../../assets/logo/logo.png'
+import { AuthContext } from "../../../Context/AuthProvider";
 
 
 
 const NavBar = () => {
+    // const {} = useContext(AuthContext)
+
 
 
     const [openNav, setOpenNav] = useState(false);
@@ -79,8 +82,8 @@ const NavBar = () => {
                     <Link className="text-2xl font-semibold uppercase" to='/'>Pro's Guide</Link>
                 </Typography>
                 <div className="hidden lg:block">{navList}</div>
-                <Button variant="text" size="lg" className="hidden lg:inline-block">
-                    <Link>Log in</Link>
+                <Button color="green" variant="gradient" size="lg" className="hidden lg:inline-block">
+                    <Link to='/login'>Login</Link>
                 </Button>
                 <IconButton
                     variant="text"
@@ -122,8 +125,8 @@ const NavBar = () => {
             </div>
             <MobileNav open={openNav}>
                 {navList}
-                <Link>
-                    <Button variant="text" size="md" fullWidth className="mb-2">
+                <Link to='/login'>
+                    <Button color="green" variant="gradient" size="md" fullWidth className="mb-2">
                         Login
                     </Button></Link>
             </MobileNav>
