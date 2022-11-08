@@ -21,7 +21,7 @@ const AuthProvider = ({ children }) => {
     const signInUser = (email, password) => {
         return signInWithEmailAndPassword(auth, email, password)
     }
-    const logOut = () => { 
+    const userLogOut = () => { 
         return signOut(auth)
     }
     useEffect(() => {
@@ -38,7 +38,7 @@ const AuthProvider = ({ children }) => {
         createUser,
         updateUser,
         signInUser,
-        logOut
+        userLogOut
     }
     return (
         <AuthContext.Provider value={information}>

@@ -13,10 +13,10 @@ import { AuthContext } from "../../../Context/AuthProvider";
 
 
 const NavBar = () => {
-    const { user, logOut } = useContext(AuthContext)
+    const { user, userLogOut } = useContext(AuthContext)
 
     const handleSignOut = () => {
-        logOut()
+        userLogOut()
             .then()
             .catch(err => console.log(err));
     }
@@ -34,7 +34,7 @@ const NavBar = () => {
         <ul className="mb-4 mt-2 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
             <Typography
                 as="li"
-                variant="small"
+                variant="h6"
                 color="black"
                 className="p-1 font-normal hover:text-green-500 duration-150"
             >
@@ -47,7 +47,7 @@ const NavBar = () => {
                     <>
                         <Typography
                             as="li"
-                            variant="small"
+                            variant="h6"
                             color="black"
                             className="p-1 font-normal hover:text-green-500 duration-150"
                         >
@@ -57,7 +57,7 @@ const NavBar = () => {
                         </Typography>
                         <Typography
                             as="li"
-                            variant="small"
+                            variant="h6"
                             color="black"
                             className="p-1 font-normal hover:text-green-500 duration-150"
                         >
@@ -80,7 +80,7 @@ const NavBar = () => {
                     className="mr-4 cursor-pointer py-1.5 font-normal"
                 >
 
-                    <Link className="text-2xl font-semibold uppercase flex items-center" to='/'><img className="mr-5 w-10 h-10" src={logo} alt="" />Pro's Guide</Link>
+                    <Link className="text-2xl font-extrabold uppercase flex items-center" to='/'><img className="mr-5 w-10 h-10" src={logo} alt="" /><span className="hover:text-green-700 duration-300 hover:mr-2">Pro's </span>Guide</Link>
                 </Typography>
                 <div className="hidden lg:block">{navList}</div>
                 {
