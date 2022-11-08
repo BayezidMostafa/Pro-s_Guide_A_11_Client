@@ -9,13 +9,17 @@ import {
 } from "@material-tailwind/react";
 import { Link } from "react-router-dom";
 
-const Login = () => {
+const Signup = () => {
     const handleFormSubmit = event => {
-        event.preventDefault();
+        event.preventDefault()
         const form = event.target;
+        const firstName = form.firstName.value;
+        const lastName = form.lastName.value;
+        const fullName = firstName + ' ' + lastName;
+        const url = form.url.value;
         const email = form.email.value;
         const password = form.password.value;
-        console.log(email, password);
+        console.log(fullName, url, email, password);
     }
 
     return (
@@ -26,27 +30,29 @@ const Login = () => {
                 className="mb-4 grid h-28 place-items-center"
             >
                 <Typography variant="h3" color="white">
-                    Sign in
+                    Sign up
                 </Typography>
             </CardHeader>
             <form onSubmit={handleFormSubmit}>
                 <CardBody className="flex flex-col gap-4">
-                    <Input name="email" type='email' label="Email" size="lg" />
-                    <Input name="password" type='password' label="Password" size="lg" />
-                    <span className="text-sm">Forget Password? <Link className="hover:text-green-500 hover:underline">Click here!</Link></span>
+                    <Input type='name' name="firstName" label="First Name" size="lg" />
+                    <Input type='name' name="lastName" label="Last Name" size="lg" />
+                    <Input type='url' name="url" label="Image URL" size="lg" />
+                    <Input type='email' name="email" label="Email" size="lg" />
+                    <Input type='password' name="password" label="Password" size="lg" />
                 </CardBody>
                 <CardFooter className="pt-0">
                     <Button type="submit" color="green" variant="gradient" fullWidth>
-                        Sign In
+                        Sign up
                     </Button>
                     <Typography variant="small" className="mt-6 flex justify-center">
-                        Don't have an account?
+                        Already have an account?
                         <Typography
                             variant="small"
                             color="green"
                             className="ml-1 font-bold hover:underline"
                         >
-                            <Link to='/signup'>Sign up</Link>
+                            <Link to='/login'>Sign in</Link>
                         </Typography>
                     </Typography>
                 </CardFooter>
@@ -54,4 +60,5 @@ const Login = () => {
         </Card>
     );
 }
-export default Login
+
+export default Signup;
