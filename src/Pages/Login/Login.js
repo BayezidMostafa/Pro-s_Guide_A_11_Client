@@ -8,14 +8,36 @@ import {
     Button,
 } from "@material-tailwind/react";
 import { Link } from "react-router-dom";
+import GoogleLogo from '../../assets/logo/google.png'
+import { useContext } from "react";
+import { AuthContext } from "../../Context/AuthProvider";
+import { GoogleAuthProvider } from "firebase/auth";
 
 const Login = () => {
+
+    const {providerLogin, signInUser} = useContext(AuthContext);
+    const googleProvider = new GoogleAuthProvider()
+
     const handleFormSubmit = event => {
         event.preventDefault();
         const form = event.target;
         const email = form.email.value;
         const password = form.password.value;
         console.log(email, password);
+        signInUser(email, password)
+        .then(result => {
+            const user = result.user;
+            form.reset();
+            console.log(user);
+        })
+    }
+
+    const handleGoogleLogIn = () => {
+        providerLogin(googleProvider)
+        .then(result => {
+            const user = result.user;
+            console.log(user);
+        })
     }
 
     return (
@@ -39,18 +61,10 @@ const Login = () => {
                     <Button type="submit" color="green" variant="gradient" fullWidth>
                         Sign In
                     </Button>
-                    <Typography variant="small" className="mt-6 flex justify-center">
-                        Don't have an account?
-                        <Typography
-                            variant="small"
-                            color="green"
-                            className="ml-1 font-bold hover:underline"
-                        >
-                            <Link to='/signup'>Sign up</Link>
-                        </Typography>
-                    </Typography>
+                    <p className="mt-5 text-sm">Don't have an account?<Link to='/signup' className="hover:underline text-green-500 font-semibold"> Sign up</Link></p>
                 </CardFooter>
             </form>
+            <Button onClick={handleGoogleLogIn} color="green" variant="gradient" className="mx-6 flex items-center justify-center text-base border-4 mb-5"><img className="w-10 mr-5 bg-white p-1 rounded" src={GoogleLogo} alt="" /> Sign in with Google</Button>
         </Card>
     );
 }

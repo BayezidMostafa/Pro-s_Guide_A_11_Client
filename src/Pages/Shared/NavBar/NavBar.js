@@ -13,9 +13,13 @@ import { AuthContext } from "../../../Context/AuthProvider";
 
 
 const NavBar = () => {
-    // const {} = useContext(AuthContext)
+    const { user, logOut } = useContext(AuthContext)
 
-
+    const handleSignOut = () => {
+        logOut()
+            .then()
+            .catch(err => console.log(err));
+    }
 
     const [openNav, setOpenNav] = useState(false);
 
@@ -31,43 +35,40 @@ const NavBar = () => {
             <Typography
                 as="li"
                 variant="small"
-                color="blue-gray"
-                className="p-1 font-normal"
+                color="black"
+                className="p-1 font-normal hover:text-green-500 duration-150"
             >
-                <Link to="" className="flex font-semibold items-center">
-                    Pages
+                <Link to="/" className="flex font-semibold items-center">
+                    Home
                 </Link>
             </Typography>
-            <Typography
-                as="li"
-                variant="small"
-                color="blue-gray"
-                className="p-1 font-normal"
-            >
-                <Link to="" className="flex font-semibold items-center">
-                    Account
-                </Link>
-            </Typography>
-            <Typography
-                as="li"
-                variant="small"
-                color="blue-gray"
-                className="p-1 font-normal"
-            >
-                <Link to="" className="flex font-semibold items-center">
-                    Blocks
-                </Link>
-            </Typography>
-            <Typography
-                as="li"
-                variant="small"
-                color="blue-gray"
-                className="p-1 font-normal"
-            >
-                <Link to="" className="flex font-semibold items-center">
-                    Docs
-                </Link>
-            </Typography>
+            {
+                user?.uid ?
+                    <>
+                        <Typography
+                            as="li"
+                            variant="small"
+                            color="black"
+                            className="p-1 font-normal hover:text-green-500 duration-150"
+                        >
+                            <Link to="" className="flex font-semibold items-center">
+                                My Reviews
+                            </Link>
+                        </Typography>
+                        <Typography
+                            as="li"
+                            variant="small"
+                            color="black"
+                            className="p-1 font-normal hover:text-green-500 duration-150"
+                        >
+                            <Link to="" className="flex font-semibold items-center">
+                                Add Service
+                            </Link>
+                        </Typography>
+                    </>
+                    :
+                    <></>
+            }
         </ul>
     );
 
@@ -76,15 +77,28 @@ const NavBar = () => {
             <div className="container mx-auto flex items-center justify-between text-blue-gray-900">
                 <Typography
                     variant="small"
-                    className="mr-4 cursor-pointer py-1.5 font-normal flex items-center"
+                    className="mr-4 cursor-pointer py-1.5 font-normal"
                 >
-                <img className="mr-5 w-10 h-10" src={logo} alt="" />
-                    <Link className="text-2xl font-semibold uppercase" to='/'>Pro's Guide</Link>
+
+                    <Link className="text-2xl font-semibold uppercase flex items-center" to='/'><img className="mr-5 w-10 h-10" src={logo} alt="" />Pro's Guide</Link>
                 </Typography>
                 <div className="hidden lg:block">{navList}</div>
-                <Button color="green" variant="gradient" size="lg" className="hidden lg:inline-block">
-                    <Link to='/login'>Login</Link>
-                </Button>
+                {
+                    user?.uid ?
+                        <>
+                            <Button onClick={handleSignOut} color="green" variant="gradient" size="lg" className="hidden lg:inline-block">
+                                <Link to='/login'>Sign out</Link>
+                            </Button>
+                        </>
+                        :
+                        <>
+                            <Link to='/login'>
+                                <Button color="green" variant="gradient" size="lg" className="hidden lg:inline-block">
+                                    Sign in
+                                </Button>
+                            </Link>
+                        </>
+                }
                 <IconButton
                     variant="text"
                     className="ml-auto h-6 w-6 text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"
@@ -125,10 +139,24 @@ const NavBar = () => {
             </div>
             <MobileNav open={openNav}>
                 {navList}
-                <Link to='/login'>
-                    <Button color="green" variant="gradient" size="md" fullWidth className="mb-2">
-                        Login
-                    </Button></Link>
+                {
+                    user?.uid ?
+                        <>
+                            <Link to='/login'>
+                                <Button onClick={handleSignOut} color="green" variant="gradient" size="md" fullWidth className="mb-2">
+                                    Sign out
+                                </Button>
+                            </Link>
+                        </>
+                        :
+                        <>
+                            <Link to='/login'>
+                                <Button color="green" variant="gradient" size="md" fullWidth className="mb-2">
+                                    Sign in
+                                </Button>
+                            </Link>
+                        </>
+                }
             </MobileNav>
         </Navbar>
     );

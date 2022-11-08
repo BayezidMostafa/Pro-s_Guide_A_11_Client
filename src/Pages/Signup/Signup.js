@@ -7,9 +7,14 @@ import {
     Input,
     Button,
 } from "@material-tailwind/react";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../Context/AuthProvider";
 
 const Signup = () => {
+
+    const {createUser, updateUser} = useContext(AuthContext);
+
     const handleFormSubmit = event => {
         event.preventDefault()
         const form = event.target;
@@ -20,6 +25,23 @@ const Signup = () => {
         const email = form.email.value;
         const password = form.password.value;
         console.log(fullName, url, email, password);
+        createUser(email, password)
+        .then(result => {
+            const user = result.user;
+            updateUserInfo(fullName, url);
+            form.reset();
+            console.log(user);
+        })
+        .catch(err => console.log(err))
+    }
+    const updateUserInfo = (fullName, url) => {
+        const profile = {
+            displayName: fullName,
+            photoURL: url
+        }
+        updateUser(profile)
+
+        
     }
 
     return (
@@ -45,16 +67,7 @@ const Signup = () => {
                     <Button type="submit" color="green" variant="gradient" fullWidth>
                         Sign up
                     </Button>
-                    <Typography variant="small" className="mt-6 flex justify-center">
-                        Already have an account?
-                        <Typography
-                            variant="small"
-                            color="green"
-                            className="ml-1 font-bold hover:underline"
-                        >
-                            <Link to='/login'>Sign in</Link>
-                        </Typography>
-                    </Typography>
+                    <p className="mt-5 text-sm">Already have an account?<Link to='/login' className="hover:underline text-green-500 font-semibold"> Sign in</Link></p>
                 </CardFooter>
             </form>
         </Card>
