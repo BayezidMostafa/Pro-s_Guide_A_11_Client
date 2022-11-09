@@ -11,7 +11,7 @@ const Banner = () => {
                     <h1 className="text-3xl font-bold leading-none md:text-5xl">Travel. It's the best investment you can make.</h1>
                     <p className="mt-6 mb-8 text-lg sm:mb-12">Traveling will inevitably make you more independent and confident. You will realize that you can cope with a lot of unexpected situations.</p>
                     <div className="flex flex-col space-y-4 sm:items-center sm:justify-center sm:flex-row sm:space-y-0 sm:space-x-4 lg:justify-start">
-                        <Link><Button color='green' variant='gradient' to='' className="px-8 py-3 text-lg font-semibold rounded bg-violet-400">Explore</Button></Link>
+                        <Link><Button color='green' variant='text' to='' className="px-8 py-3 text-lg font-semibold rounded bg-violet-400">Explore</Button></Link>
                         <Link><Button color='green' variant='gradient' to='' className="px-8 py-3 text-lg font-semibold border rounded hover:bg-green-300">Reviews</Button></Link>
                     </div>
                 </div>
