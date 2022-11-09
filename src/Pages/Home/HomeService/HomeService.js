@@ -19,7 +19,7 @@ export default function HomeService({service}) {
                 <Typography variant="h4" color="blue-gray" className="mb-2">
                     {name}
                 </Typography>
-                <Typography className="font-medium" textGradient>
+                <Typography className="font-medium text-gray-900" textGradient>
                     Package Starts From: ${Price}
                 </Typography>
             </CardBody>
