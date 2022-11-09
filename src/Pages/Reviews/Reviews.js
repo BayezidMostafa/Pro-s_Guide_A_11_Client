@@ -15,7 +15,7 @@ const Reviews = ({ review }) => {
                         <p className="text-gray-400 text-sm">{email}</p>
                     </div>
             </div>
-            <p className="-mt-4 text-gray-500">{review_comment}</p>
+            <p className="-mt-4 text-gray-500 overflow-auto">{review_comment}</p>
         </div>
     );
 };

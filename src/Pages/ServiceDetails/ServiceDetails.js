@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { useLoaderData } from 'react-router-dom';
+import { Link, useLoaderData } from 'react-router-dom';
 import {
     Card,
     CardHeader,
@@ -15,20 +15,20 @@ import Reviews from '../Reviews/Reviews';
 import { AuthContext } from '../../Context/AuthProvider';
 
 const ServiceDetails = () => {
-    const {user} = useContext(AuthContext)
+    const { user } = useContext(AuthContext)
     const service = useLoaderData()
     const { thumbnail_img, itemID, serviceName, _id, rating, info, Price } = service;
-    
+
     const [reviews, setReviews] = useState([]);
     console.log(reviews);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/reviews?itemID=${itemID}`)
+        fetch(`http://localhost:5000/reviews?serviceName=${serviceName}`)
             .then(res => res.json())
             .then(data => {
                 setReviews(data)
             })
-    }, [itemID])
+    }, [serviceName])
 
     const onReviewSubmit = event => {
         event.preventDefault()
@@ -45,7 +45,21 @@ const ServiceDetails = () => {
             picture: user?.photoURL,
             rating
         }
-        // fetch('http://localhost:5000/reviews')
+        fetch('http://localhost:5000/reviews', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(review)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                if (data.acknowledged) {
+                    alert('Review Submitted')
+                }
+            })
+            .catch(err => console.error(err))
     }
     console.log(reviews);
     return (
@@ -84,16 +98,35 @@ const ServiceDetails = () => {
                 }
             </div>
             <div>
-                <p className='text-xl mb-5'>Add a review</p>
-                <form onSubmit={onReviewSubmit} className='grid md:grid-cols-3 gap-5 w-[96%] mx-auto md:w-full'>
-                    <div className='col-span-2'>
-                        <Textarea name='review_text' variant="outlined" color='green' label="Write a Review" required />
-                    </div>
-                    <div className='col-span-1'>
-                        <Input name='rating' color='green' size="md" label="Rating" required />
-                        <Button type='submit' className='mt-5 w-full' color='green' variant='gradient'>Submit</Button>
-                    </div>
-                </form>
+                {
+                    user?.uid ?
+                        <>
+                            <p className='text-xl mb-5'>Add a review</p>
+                            <form onSubmit={onReviewSubmit} className='grid md:grid-cols-3 gap-5 w-[96%] mx-auto md:w-full'>
+                                <div className='col-span-2'>
+                                    <Textarea name='review_text' variant="outlined" color='green' label="Write a Review" required />
+                                </div>
+                                <div className='col-span-1'>
+                                    <Input name='rating' color='green' size="md" label="Rating" required />
+                                    <Button type='submit' className='mt-5 w-full' color='green' variant='gradient'>Submit</Button>
+                                </div>
+                            </form>
+                        </>
+                        :
+                        <>
+                            <p className='mb-5 text-red-500 font-bold text-3xl text-center'>Please Sign in to add a review!</p>
+                            <Link to='/login'><Button type='submit' size='large' className='mt-5 w-full' color='green' variant='gradient'>Sign in</Button></Link>
+                            {/* <form className='grid md:grid-cols-3 gap-5 w-[96%] mx-auto md:w-full'>
+                                <div className='col-span-2'>
+                                    <Textarea variant="outlined" color='green' label="Write a Review" disabled  />
+                                </div>
+                                <div className='col-span-1'>
+                                    <Input color='green' size="md" label="Rating" disabled  />
+                                    <Link to='/login'><Button type='submit' className='mt-5 w-full' color='green' variant='gradient'>Sign in</Button></Link>
+                                </div>
+                            </form> */}
+                        </>
+                }
             </div>
         </div>
     );
