@@ -23,12 +23,10 @@ const Login = () => {
         const form = event.target;
         const email = form.email.value;
         const password = form.password.value;
-        console.log(email, password);
         signInUser(email, password)
         .then(result => {
             const user = result.user;
             form.reset();
-            console.log(user);
         })
     }
 
@@ -36,7 +34,6 @@ const Login = () => {
         providerLogin(googleProvider)
         .then(result => {
             const user = result.user;
-            console.log(user);
         })
     }
 

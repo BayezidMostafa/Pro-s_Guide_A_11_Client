@@ -24,15 +24,13 @@ const Signup = () => {
         const url = form.url.value;
         const email = form.email.value;
         const password = form.password.value;
-        console.log(fullName, url, email, password);
         createUser(email, password)
         .then(result => {
             const user = result.user;
             updateUserInfo(fullName, url);
             form.reset();
-            console.log(user);
         })
-        .catch(err => console.log(err))
+        .catch(err => console.error(err))
     }
     const updateUserInfo = (fullName, url) => {
         const profile = {

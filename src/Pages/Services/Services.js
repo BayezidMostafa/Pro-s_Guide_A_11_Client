@@ -8,7 +8,6 @@ const Services = () => {
             .then(res => res.json())
             .then(data => setServices(data))
     }, [])
-    console.log(services);
     return (
         <div className='container mx-auto mt-10'>
             <p style={{textShadow:"0 1px 3px gray"}} className='text-center text-2xl sm:text-3xl md:text-5xl font-bold uppercase text-green-900'>All Services Is Here!</p>

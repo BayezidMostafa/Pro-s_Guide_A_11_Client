@@ -8,7 +8,6 @@ export const AuthContext = createContext()
 
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
-    console.log(user);
     const providerLogin = (provider) => {
         return signInWithPopup(auth, provider)
     }

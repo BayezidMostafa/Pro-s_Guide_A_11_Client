@@ -8,10 +8,10 @@ import {
 } from "@material-tailwind/react";
 import { PhotoProvider, PhotoView } from "react-photo-view";
 import 'react-photo-view/dist/react-photo-view.css';
+import { Link } from "react-router-dom";
 
 export default function Service({ service }) {
-    console.log(service);
-    const { picture, name, rating, info, Price } = service;
+    const { picture, serviceName, _id, info, Price } = service;
     return (
         <Card className="hover:shadow-gray-500 shadow-lg duration-500">
             <CardHeader floated={false} className="">
@@ -26,7 +26,7 @@ export default function Service({ service }) {
             </CardHeader>
             <CardBody className="text-center">
                 <Typography variant="h4" color="blue-gray" className="mb-2">
-                    {name}
+                    {serviceName}
                 </Typography>
                 <Typography className="font-medium text-gray-900" textGradient>
                     Package Starts From: ${Price}
@@ -37,7 +37,7 @@ export default function Service({ service }) {
                     {info.slice(0, 100)}
                 </Typography>
             </CardFooter>
-            <Button color="green" className="w-[95%] mx-auto mb-2 text-base" variant="gradient">See Details</Button>
+            <Link className="text-center" to={`/services/${_id}`}><Button color="green" className="w-[95%] mx-auto mb-2 text-base" variant="gradient">See Details</Button></Link>
         </Card >
     );
 }

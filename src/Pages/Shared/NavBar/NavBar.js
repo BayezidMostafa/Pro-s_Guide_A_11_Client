@@ -18,7 +18,7 @@ const NavBar = () => {
     const handleSignOut = () => {
         userLogOut()
             .then()
-            .catch(err => console.log(err));
+            .catch(err => console.error(err));
     }
 
     const [openNav, setOpenNav] = useState(false);
@@ -40,6 +40,16 @@ const NavBar = () => {
             >
                 <Link to="/" className="flex font-semibold items-center">
                     Home
+                </Link>
+            </Typography>
+            <Typography
+                as="li"
+                variant="h6"
+                color="black"
+                className="p-1 font-normal hover:text-green-500 duration-150"
+            >
+                <Link to="/blog" className="flex font-semibold items-center">
+                    Blog
                 </Link>
             </Typography>
             {
