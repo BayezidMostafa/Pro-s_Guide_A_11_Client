@@ -37,9 +37,9 @@ const AddService = () => {
             .then(res => res.json())
             .then(data => {
                 if (data.acknowledged) {
-                    toast.success('Service Added')
                     form.reset();
                 }
+                toast.success('Service Added')
             })
             .catch(err => console.error(err))
         console.log(service);
