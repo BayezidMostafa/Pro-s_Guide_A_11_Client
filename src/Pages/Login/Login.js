@@ -7,15 +7,19 @@ import {
     Input,
     Button,
 } from "@material-tailwind/react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import GoogleLogo from '../../assets/logo/google.png'
 import { useContext } from "react";
 import { AuthContext } from "../../Context/AuthProvider";
 import { GoogleAuthProvider } from "firebase/auth";
 
 const Login = () => {
-
     const {providerLogin, signInUser} = useContext(AuthContext);
+    const location = useLocation()
+    const navigate = useNavigate()
+
+    let from = location.state?.from?.pathname || "/";
+
     const googleProvider = new GoogleAuthProvider()
 
     const handleFormSubmit = event => {
@@ -26,6 +30,7 @@ const Login = () => {
         signInUser(email, password)
         .then(result => {
             const user = result.user;
+            navigate(from, {replace:true})
             form.reset();
         })
     }
@@ -34,6 +39,7 @@ const Login = () => {
         providerLogin(googleProvider)
         .then(result => {
             const user = result.user;
+            navigate(from, {replace:true})
         })
     }
 
