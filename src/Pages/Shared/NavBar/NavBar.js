@@ -71,7 +71,7 @@ const NavBar = () => {
                             color="black"
                             className="p-1 font-normal hover:text-green-500 duration-150"
                         >
-                            <Link to="" className="flex font-semibold items-center">
+                            <Link to="/addservice" className="flex font-semibold items-center">
                                 Add Service
                             </Link>
                         </Typography>
