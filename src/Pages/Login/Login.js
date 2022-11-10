@@ -13,8 +13,10 @@ import { useContext, useState } from "react";
 import { AuthContext } from "../../Context/AuthProvider";
 import { GoogleAuthProvider } from "firebase/auth";
 import toast from "react-hot-toast";
+import useTitle from "../../Hook/useTitle";
 
 const Login = () => {
+    useTitle("LOGIN")
     const [error, setError] = useState('')
     const { providerLogin, signInUser } = useContext(AuthContext);
     const location = useLocation()

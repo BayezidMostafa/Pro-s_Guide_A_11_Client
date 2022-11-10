@@ -10,8 +10,10 @@ import {
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../Context/AuthProvider";
+import useTitle from "../../Hook/useTitle";
 
 const Signup = () => {
+    useTitle("SIGN UP")
 
     const {createUser, updateUser} = useContext(AuthContext);
 

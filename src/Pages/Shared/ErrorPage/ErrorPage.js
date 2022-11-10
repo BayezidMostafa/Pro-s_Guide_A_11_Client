@@ -2,8 +2,10 @@ import { Button } from '@material-tailwind/react';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../../assets/logo/error-404.png'
+import useTitle from '../../../Hook/useTitle';
 
 const ErrorPage = () => {
+    useTitle("ERROR")
     return (
         <div className='flex items-center justify-center min-h-screen'>
             <div className='flex flex-col items-center'>

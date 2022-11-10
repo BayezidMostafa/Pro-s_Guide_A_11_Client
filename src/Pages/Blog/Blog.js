@@ -4,8 +4,10 @@ import {
     AccordionHeader,
     AccordionBody,
 } from "@material-tailwind/react";
+import useTitle from "../../Hook/useTitle";
 
 const Blog = () => {
+    useTitle('BLOG')
     const [open, setOpen] = useState(0);
 
     const handleOpen = (value) => {

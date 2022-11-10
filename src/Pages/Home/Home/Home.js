@@ -1,6 +1,7 @@
 import { Button } from '@material-tailwind/react';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import useTitle from '../../../Hook/useTitle';
 import Banner from '../Banner/Banner';
 import HomeService from '../HomeService/HomeService';
 import SpotSlider from '../SpotSlider/SpotSlider';
@@ -8,6 +9,7 @@ import TravelQuote from '../TravelQuote/TravelQuote';
 
 const Home = () => {
     const [services, setServices] = useState([])
+    useTitle("HOME")
     const size = 3;
     useEffect(() => {
         fetch(`http://localhost:5000/services?size=${size}`)
