@@ -33,11 +33,27 @@ const Login = () => {
         const password = form.password.value;
         signInUser(email, password)
             .then(result => {
-                const user = result.user;
+                const user = result?.user;
+                const loggedInUser = {
+                    email: user.email
+                }
+                console.log(loggedInUser);
                 toast.success('User Signed in')
-                navigate(from, { replace: true })
-                form.reset();
-                setError('')
+                fetch('http://localhost:5000/jwtAuth', {
+                    method:'POST',
+                    headers:{
+                        'content-type' : 'application/json'
+                    },
+                    body: JSON.stringify(loggedInUser)
+                })
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data);
+                    localStorage.setItem("pro's-token", data.token)
+                    navigate(from, { replace: true })
+                    form.reset();
+                    setError('')
+                })
             })
             .catch(err => {
                 console.error(err)

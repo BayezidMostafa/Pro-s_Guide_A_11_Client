@@ -14,8 +14,10 @@ import { PhotoProvider, PhotoView } from 'react-photo-view';
 import Reviews from '../Reviews/Reviews';
 import { AuthContext } from '../../Context/AuthProvider';
 import toast from 'react-hot-toast';
+import useTitle from '../../Hook/useTitle';
 
 const ServiceDetails = () => {
+    useTitle("SERVICE DETAILS")
     const { user } = useContext(AuthContext)
     const service = useLoaderData()
     const { thumbnail_img, itemID, serviceName, _id, rating, info, Price } = service;
@@ -36,7 +38,6 @@ const ServiceDetails = () => {
         const form = event.target;
         const review_text = form.review_text.value;
         const rating = form.rating.value;
-        // console.log(review_text, rating);
         const review = {
             itemID,
             serviceName,

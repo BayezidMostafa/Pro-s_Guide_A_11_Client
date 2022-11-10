@@ -1,8 +1,9 @@
 import { Button, Input, Textarea } from '@material-tailwind/react';
-import React from 'react';
+import React, { useState } from 'react';
 import useTitle from '../../Hook/useTitle';
 
 const AddService = () => {
+    
     useTitle("ADD SERVICES")
 
     const ItemID = Math.floor(1000 + Math.random() * 9000);
@@ -45,6 +46,7 @@ const AddService = () => {
 
     return (
         <form onSubmit={handleFormSubmit} className='sm:container mx-auto mt-10 min-h-[70.5vh] w-4/5'>
+
             <p className='text-center text-2xl md:text-4xl font-semibold'>Add your own service over here!</p>
             <div className='mt-10 grid md:grid-cols-3 gap-2'>
                 <div className='md:col-span-1'><Input type='number' name='itemId' className='' color="green" label="ItemID" defaultValue={ItemID} readOnly /></div>

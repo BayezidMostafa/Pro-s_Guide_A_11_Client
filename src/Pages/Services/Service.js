@@ -9,8 +9,14 @@ import {
 import { PhotoProvider, PhotoView } from "react-photo-view";
 import 'react-photo-view/dist/react-photo-view.css';
 import { Link } from "react-router-dom";
+import useTitle from "../../Hook/useTitle";
 
 export default function Service({ service }) {
+
+    
+
+
+    useTitle("SERVICE")
     const { picture, serviceName, _id, info, Price } = service;
     return (
         <Card className="hover:shadow-gray-500 shadow-lg duration-500">
