@@ -5,11 +5,15 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import AuthProvider from './Context/AuthProvider';
 import 'react-photo-view/dist/react-photo-view.css';
+import { Toaster } from 'react-hot-toast';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-    <AuthProvider>
-      <App />
-    </AuthProvider>
+  <AuthProvider>
+    <Toaster
+      position="top-center"
+    />
+    <App />
+  </AuthProvider>
 );
 reportWebVitals();

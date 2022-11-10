@@ -9,12 +9,14 @@ import {
 } from "@material-tailwind/react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import GoogleLogo from '../../assets/logo/google.png'
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../../Context/AuthProvider";
 import { GoogleAuthProvider } from "firebase/auth";
+import toast from "react-hot-toast";
 
 const Login = () => {
-    const {providerLogin, signInUser} = useContext(AuthContext);
+    const [error, setError] = useState('')
+    const { providerLogin, signInUser } = useContext(AuthContext);
     const location = useLocation()
     const navigate = useNavigate()
 
@@ -28,21 +30,31 @@ const Login = () => {
         const email = form.email.value;
         const password = form.password.value;
         signInUser(email, password)
-        .then(result => {
-            const user = result.user;
-            navigate(from, {replace:true})
-            form.reset();
-        })
-        .catch(err => console.error(err))
+            .then(result => {
+                const user = result.user;
+                toast.success('User Signed in')
+                navigate(from, { replace: true })
+                form.reset();
+                setError('')
+            })
+            .catch(err => {
+                console.error(err)
+                setError(err.message)
+            })
     }
 
     const handleGoogleLogIn = () => {
         providerLogin(googleProvider)
-        .then(result => {
-            const user = result.user;
-            navigate(from, {replace:true})
-        })
-        .catch(err => console.error(err))   
+            .then(result => {
+                const user = result.user;
+                toast.success('User Signed in')
+                navigate(from, { replace: true })
+                setError('')
+            })
+            .catch(err => {
+                console.error(err)
+                setError(err.message)
+            })
     }
 
     return (
@@ -63,6 +75,16 @@ const Login = () => {
                     <span className="text-sm">Forget Password? <Link className="hover:text-green-500 hover:underline">Click here!</Link></span>
                 </CardBody>
                 <CardFooter className="pt-0">
+                    {   
+                        error ? 
+                        <>
+                            {
+                                error ? <p className="text-red-600 mb-2">Email or Password Invalid</p> : ''
+                            }
+                        </>
+                        :
+                        ''
+                    }
                     <Button type="submit" color="green" variant="gradient" fullWidth>
                         Sign In
                     </Button>

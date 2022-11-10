@@ -13,6 +13,7 @@ import {
 import { PhotoProvider, PhotoView } from 'react-photo-view';
 import Reviews from '../Reviews/Reviews';
 import { AuthContext } from '../../Context/AuthProvider';
+import toast from 'react-hot-toast';
 
 const ServiceDetails = () => {
     const { user } = useContext(AuthContext)
@@ -56,7 +57,8 @@ const ServiceDetails = () => {
             .then(data => {
                 console.log(data);
                 if (data.acknowledged) {
-                    alert('Review Submitted')
+                    toast.success('Thanks For The Review')
+                    form.reset()
                 }
             })
             .catch(err => console.error(err))

@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Banner from '../Banner/Banner';
 import HomeService from '../HomeService/HomeService';
+import SpotSlider from '../SpotSlider/SpotSlider';
 
 const Home = () => {
     const [services, setServices] = useState([])
@@ -21,6 +22,7 @@ const Home = () => {
                 }
             </div>
             <div className='text-center'><Link to='/services'><Button variant='gradient' size='lg' color='green' className=''>See All</Button></Link></div>
+            <SpotSlider/>
         </div>
     );
 };

@@ -1,5 +1,6 @@
 import { Button, Input, Textarea } from '@material-tailwind/react';
 import React, { useState } from 'react';
+import toast from 'react-hot-toast';
 import { FaTimes, FaPen } from "react-icons/fa";
 
 
@@ -29,7 +30,7 @@ const Review = ({ review, handleDelete }) => {
         .then(res => res.json())
         .then(data => {
             if(data.modifiedCount > 0){
-                alert('User updated')
+                toast.success('Review Updated Successfully')
             }
             console.log(data)
         })
