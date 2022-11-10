@@ -33,6 +33,7 @@ const Login = () => {
             navigate(from, {replace:true})
             form.reset();
         })
+        .catch(err => console.error(err))
     }
 
     const handleGoogleLogIn = () => {
@@ -41,6 +42,7 @@ const Login = () => {
             const user = result.user;
             navigate(from, {replace:true})
         })
+        .catch(err => console.error(err))   
     }
 
     return (
