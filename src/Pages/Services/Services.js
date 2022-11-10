@@ -5,20 +5,25 @@ import Service from './Service';
 
 const Services = () => {
     useTitle('SERVICES')
+    const [loading, setLoading] = useState(false)
     const [services, setServices] = useState([]);
     useEffect(() => {
+        setLoading(true)
         fetch('http://localhost:5000/services')
             .then(res => res.json())
             .then(data => {
                 setServices(data)
+                setLoading(false)
             })
     }, [])
     return (
-        <div>
+        <div className='min-h-[70vh]'>
             {
-                data.length === 0 ?
+                loading ?
                     <>
-                        
+                        <div className='flex justify-center items-center min-h-[70vh]'>
+                            <div className="w-16 h-16 border-4 border-dashed rounded-full animate-spin border-green-600"></div>
+                        </div>
                     </>
                     :
                     <>

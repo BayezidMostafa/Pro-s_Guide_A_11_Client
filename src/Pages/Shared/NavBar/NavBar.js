@@ -48,6 +48,16 @@ const NavBar = () => {
                 color="black"
                 className="p-1 font-normal hover:text-green-500 duration-150"
             >
+                <Link to="/services" className="flex font-semibold items-center">
+                    Services
+                </Link>
+            </Typography>
+            <Typography
+                as="li"
+                variant="h6"
+                color="black"
+                className="p-1 font-normal hover:text-green-500 duration-150"
+            >
                 <Link to="/blog" className="flex font-semibold items-center">
                     Blog
                 </Link>
