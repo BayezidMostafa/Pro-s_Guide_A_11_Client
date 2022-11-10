@@ -32,19 +32,20 @@ const MyReviews = () => {
         }
     }
 
+
     return (
         <div className='container mx-auto mt-10 min-h-[70.5vh]'>
             {
                 reviews.length === 0 ?
-                <>
-                    <p className='text-3xl font-semibold text-center'>No Review Found. Please Add Some Review!</p>
-                </>
-            :
-            <>
-                {
-                    reviews.map(review => <Review key={review._id} review={review} handleDelete={handleDelete} />)
-                }
-            </>
+                    <>
+                        <p className='text-3xl font-semibold text-center'>No Review Found. Please Add Some Review!</p>
+                    </>
+                    :
+                    <>
+                        {
+                            reviews.map(review => <Review key={review._id} review={review} handleDelete={handleDelete} />)
+                        }
+                    </>
             }
         </div>
     );
