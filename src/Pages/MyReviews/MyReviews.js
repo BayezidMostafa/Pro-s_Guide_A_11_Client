@@ -38,8 +38,8 @@ const MyReviews = () => {
             })
                 .then(res => res.json())
                 .then(data => {
-                    if (data.deleteCount > 0) {
-                        console.log(data.deleteCount);
+                    if (data.deletedCount > 0) {
+                        console.log(data.deletedCount);
                         toast.success('Review Deleted')
                         const remainingReview = reviews.filter(rvw => rvw._id !== _id)
                         setReviews(remainingReview);
