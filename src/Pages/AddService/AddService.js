@@ -1,5 +1,5 @@
 import { Button, Input, Textarea } from '@material-tailwind/react';
-import React, { useState } from 'react';
+import toast from 'react-hot-toast';
 import useTitle from '../../Hook/useTitle';
 
 const AddService = () => {
@@ -37,6 +37,7 @@ const AddService = () => {
             .then(res => res.json())
             .then(data => {
                 if (data.acknowledged) {
+                    toast.success('Service Added Successfully')
                     form.reset();
                 }
             })

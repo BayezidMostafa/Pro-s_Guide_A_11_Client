@@ -11,7 +11,7 @@ import 'react-photo-view/dist/react-photo-view.css';
 import { Link } from "react-router-dom";
 
 const HomeService = ({ service }) => {
-    const { picture, serviceName, _id, rating, info, Price } = service;
+    const { picture, serviceName, _id, info, Price } = service;
     return (
         <Card className="hover:shadow-gray-500 shadow-lg duration-500">
             <CardHeader floated={false} className="">

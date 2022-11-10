@@ -103,7 +103,6 @@ const Review = ({ review, handleDelete }) => {
                                 ) : null}
                             </>
                         </div>
-                        {/* <p>Rating: {rating}</p> */}
                     </div>
                     <p className="text-gray-400 text-sm">{email}</p>
                 </div>
