@@ -7,10 +7,10 @@ import 'swiper/css/scrollbar';
 
 const SpotSlider = () => {
     return (
-        <div className='md:container mx-auto mt-10 w-[95%]'>
-            <p className='font-semibold text-2xl md:text-4xl text-center mb-10'>Some Places That Will Amaze You</p>
+        <div className='md:container mx-auto my-20 w-[95%]'>
+            <p style={{textShadow:"0 1px 2px gray"}} className='font-semibold text-2xl md:text-4xl text-center mb-10'>Some Places That Will Amaze You</p>
             <Swiper
-                className='rounded-lg'
+                className='rounded-lg shadow-md shadow-blue-gray-700'
                 spaceBetween={50}
                 slidesPerView={1}
                 onSlideChange={() => console.log('slide change')}
