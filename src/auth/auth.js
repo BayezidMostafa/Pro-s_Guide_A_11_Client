@@ -2,7 +2,7 @@ export const jwtAuthToken = (user) => {
     const currentUser = {
         email: user.email
     }
-    fetch('http://localhost:5000/jwtAuth', {
+    fetch('https://service-review-server-11.vercel.app/jwtAuth', {
         method: 'POST',
         headers: {
             'content-type': 'application/json'

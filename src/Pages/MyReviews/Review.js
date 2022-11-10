@@ -20,7 +20,7 @@ const Review = ({ review, handleDelete }) => {
             review_comment,
             rating
         }
-        fetch(`http://localhost:5000/myReviews/${_id}`, {
+        fetch(`https://service-review-server-11.vercel.app/myReviews/${_id}`, {
             method: 'PATCH',
             headers: {
                 'content-type': 'application/json'

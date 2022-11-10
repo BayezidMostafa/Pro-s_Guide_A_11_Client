@@ -12,7 +12,7 @@ const Home = () => {
     useTitle("HOME")
     const size = 3;
     useEffect(() => {
-        fetch(`http://localhost:5000/services?size=${size}`)
+        fetch(`https://service-review-server-11.vercel.app/services?size=${size}`)
             .then(res => res.json())
             .then(data => setServices(data));
     }, [])
