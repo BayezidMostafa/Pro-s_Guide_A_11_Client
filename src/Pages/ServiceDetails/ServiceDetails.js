@@ -58,6 +58,8 @@ const ServiceDetails = () => {
             .then(data => {
                 console.log(data);
                 if (data.acknowledged) {
+                    const allReviews = [...reviews, review];
+                    setReviews(allReviews);
                     toast.success('Thanks For The Review')
                     form.reset()
                 }
@@ -119,15 +121,6 @@ const ServiceDetails = () => {
                         <>
                             <p className='mb-5 text-red-500 font-bold text-3xl text-center'>Please Sign in to add a review!</p>
                             <Link to='/login'><Button type='submit' size='large' className='mt-5 w-full' color='green' variant='gradient'>Sign in</Button></Link>
-                            {/* <form className='grid md:grid-cols-3 gap-5 w-[96%] mx-auto md:w-full'>
-                                <div className='col-span-2'>
-                                    <Textarea variant="outlined" color='green' label="Write a Review" disabled  />
-                                </div>
-                                <div className='col-span-1'>
-                                    <Input color='green' size="md" label="Rating" disabled  />
-                                    <Link to='/login'><Button type='submit' className='mt-5 w-full' color='green' variant='gradient'>Sign in</Button></Link>
-                                </div>
-                            </form> */}
                         </>
                 }
             </div>
