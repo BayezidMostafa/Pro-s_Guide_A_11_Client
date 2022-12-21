@@ -7,17 +7,22 @@ import {
     Input,
     Button,
 } from "@material-tailwind/react";
+import { useState } from "react";
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Context/AuthProvider";
 import useTitle from "../../Hook/useTitle";
 
 const Signup = () => {
+    const [loading, setLoading] = useState(false)
+    const navigate = useNavigate()
+    const [error, setError] = useState()
     useTitle("SIGN UP")
 
-    const {createUser, updateUser} = useContext(AuthContext);
+    const { createUser, updateUser } = useContext(AuthContext);
 
     const handleFormSubmit = event => {
+        setLoading(true)
         event.preventDefault()
         const form = event.target;
         const firstName = form.firstName.value;
@@ -27,12 +32,18 @@ const Signup = () => {
         const email = form.email.value;
         const password = form.password.value;
         createUser(email, password)
-        .then(result => {
-            const user = result.user;
-            updateUserInfo(fullName, url);
-            form.reset();
-        })
-        .catch(err => console.error(err))
+            .then(result => {
+                navigate('/')
+                const user = result.user;
+                updateUserInfo(fullName, url);
+                setLoading(false)
+                form.reset();
+            })
+            .catch(err => {
+                setLoading(false)
+                console.error(err)
+                setError(err.message)
+            })
     }
     const updateUserInfo = (fullName, url) => {
         const profile = {
@@ -41,7 +52,15 @@ const Signup = () => {
         }
         updateUser(profile)
 
-        
+
+    }
+
+    if (loading) {
+        return (
+            <div className='min-h-[70vh] flex justify-center items-center'>
+                <div className="w-16 h-16 border-4 border-dashed rounded-full animate-spin border-green-600"></div>
+            </div>
+        )
     }
 
     return (
@@ -62,6 +81,9 @@ const Signup = () => {
                     <Input type='url' name="url" label="Image URL" size="lg" />
                     <Input type='email' name="email" label="Email" size="lg" />
                     <Input type='password' name="password" label="Password" size="lg" />
+                    {
+                        error ? <><p className="text-red-600">Email already exists</p></> : ''
+                    }
                 </CardBody>
                 <CardFooter className="pt-0">
                     <Button type="submit" color="green" variant="gradient" fullWidth>
