@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import useTitle from '../../../Hook/useTitle';
 import Banner from '../Banner/Banner';
+import { Contact } from '../Contact/Contact';
 import HomeService from '../HomeService/HomeService';
 import SpotSlider from '../SpotSlider/SpotSlider';
 import TravelQuote from '../TravelQuote/TravelQuote';
@@ -27,6 +28,7 @@ const Home = () => {
             <div className='text-center'><Link to='/services'><Button variant='gradient' size='lg' color='green' className=''>See All</Button></Link></div>
             <TravelQuote />
             <SpotSlider />
+            <Contact/>
         </div>
     );
 };
