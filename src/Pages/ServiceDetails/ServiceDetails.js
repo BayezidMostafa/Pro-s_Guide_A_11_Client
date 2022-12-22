@@ -17,6 +17,7 @@ import toast from 'react-hot-toast';
 import useTitle from '../../Hook/useTitle';
 
 const ServiceDetails = () => {
+    const [loading, setLoading] = useState(false)
     useTitle("SERVICE DETAILS")
     const { user } = useContext(AuthContext)
     const service = useLoaderData()
@@ -26,14 +27,16 @@ const ServiceDetails = () => {
     console.log(reviews);
 
     useEffect(() => {
+        setLoading(true)
         fetch(`https://service-review-server-11.vercel.app/reviews?serviceName=${serviceName}`)
             .then(res => res.json())
             .then(data => {
                 setReviews(data)
+                setLoading(false)
             })
     }, [serviceName])
-
     const onReviewSubmit = event => {
+        setLoading(true)
         event.preventDefault()
         const form = event.target;
         const review_text = form.review_text.value;
@@ -56,6 +59,7 @@ const ServiceDetails = () => {
         })
             .then(res => res.json())
             .then(data => {
+                setLoading(false)
                 console.log(data);
                 if (data.acknowledged) {
                     const allReviews = [...reviews, review];
@@ -64,9 +68,21 @@ const ServiceDetails = () => {
                     form.reset()
                 }
             })
-            .catch(err => console.error(err))
+            .catch(err => {
+                console.error(err)
+                setLoading(false)
+            })
     }
     console.log(reviews);
+
+    if (loading) {
+        return (
+            <div className='min-h-[70vh] flex justify-center items-center'>
+                <div className="w-16 h-16 border-4 border-dashed rounded-full animate-spin border-green-600"></div>
+            </div>
+        )
+    }
+
     return (
         <div className='mt-16 container mx-auto'>
             <div>
